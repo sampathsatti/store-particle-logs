@@ -1,22 +1,17 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const {google} = require('googleapis');
 const keys = require('./keys.json')
 
 //initialize express
 const app = express()
-app.use(express.urlencoded({ extended: true }));
 
-//set up template engine to render html files
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true })) // Set to true to allow the body to contain any type of value
+app.use(bodyParser.json())
 
-// index route
-app.get('/', (request, response) =>{
-    response.render('index')
-})
-
-app.post('/',  async (request, response) =>{
-    const {article, author} = request.body;
+app.post('/api/RB50',  async (request, response) =>{
+    const { coreid, state, rpm, distance, mov_f, mov_s } = request.body
     const auth = new google.auth.GoogleAuth({
         keyFile: "keys.json", //the key file
         //url to spreadsheets API
@@ -53,11 +48,10 @@ app.post('/',  async (request, response) =>{
         range: "Sheet1!A:B", //sheet name and range of cells
         valueInputOption: "USER_ENTERED", // The information will be passed according to what the usere passes in as date, number or text
         resource: {
-            values: [[article, author]]
+            values: [[coreid, state, rpm, distance, mov_f, mov_s]]
         },
     });
-    
-    response.send("Request submitted.!!")
+    response.status(200).json('OK')
 });
 
 
