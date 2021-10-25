@@ -1,0 +1,26 @@
+{
+  "name": "store-particle-logs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sampathsatti/store-particle-logs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sampathsatti/store-particle-logs/issues"
+  },
+  "homepage": "https://github.com/sampathsatti/store-particle-logs#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "googleapis": "^89.0.0",
+    "nodemon": "^2.0.14"
+  }
+}
